@@ -31,7 +31,7 @@ int main(){
 	    break;
 	    
         case 2:
-		if(yr % 4 == 0 && yr % 100 == 0 && yr % 400 == 0)
+		if((yr % 4 == 0) && (yr % 100 != 0) || yr % 400 == 0))
         	days = 29;
 		days =28;		
 	    break;
@@ -39,14 +39,61 @@ int main(){
         default:
 	    days = 30;
     }  
-  
+	
+	//print header
+	cout <<left<<"Sun  Mon  Tue  Wed  Thu  Fri  Sat"<<endl;
+	cout <<left<<"---------------------------------"<<endl;
+	// 3let+2sp
+	
+	bool sLoop = true;
+	
+	
     for (int i=1;i<=days;i++){
+		//condition to pad
+		if(startD != 1 && sLoop){
+			
+			for(int j=0;j<startD;j++)
+				cout <<" ";
+			
+			sLoop = false;
+		}
+		
 	    cout << left << i << "";
-		//condition to end line depending on the day
-		if(false)
+		//condition to end line
+		if(i+startD % 8 == 0)
 		    cout << endl;
   
-    }  
-  
+    }
+	
+	// end day month calc
+	int lastD = startD + days - 1;
+	
+	string endDate;
+	
+	switch(lastD % 7){
+		case 1:
+		endDate = "Sunday";
+		break;
+		case 2:
+		endDate = "Monday";
+		break;
+		case 3:
+		endDate = "Tuesday";
+		break;
+		case 4:
+		endDate = "Wednesday";
+		break;
+		case 5:
+		endDate = "Thursday";
+		break;
+		case 6:
+		endDate = "Friday";
+		break;
+		default:
+		endDate = "Saturday";
+	}
+
+	cout <<endl<<"The month ends on a " << endDate << ".\n";
+
     return 0; 
 }
